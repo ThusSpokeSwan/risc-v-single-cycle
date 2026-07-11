@@ -4,7 +4,7 @@ module ALU(
     input [31:0] A,B,
     input [2:0] ALUControl,
     output[31:0] Result,slt,
-    output Z,N,C,V
+    output Z,N,C,V //Zero, Negative, Carry, Overflow
     );
     wire [31:0] sum;
     wire cout;

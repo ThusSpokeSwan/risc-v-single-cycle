@@ -3,7 +3,7 @@
 module Decoder(
     input Z,
     input [6:0] op,
-    output PCSrc,
+    output PCSrc, branch,
     output ResultSrc,
     output MemWrite,
     output ALUSrc,
@@ -12,8 +12,7 @@ module Decoder(
     output [1:0] ALUOp
     );
     
-    wire branch;
-    
+    assign branch = (op == 7'b1100011) ? 1'b1 : 1'b0;
     assign PCSrc = branch & Z;
     assign ResultSrc = (op == 7'b0000011) ? 1'b1 : 1'b0;
     assign MemWrite = (op == 7'b0100011) ? 1'b1 : 1'b0;

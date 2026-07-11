@@ -1,10 +1,11 @@
 `timescale 1ns / 1ps
 
 module Sign_Extend(
-    input [31:0] Imm,
+    input [31:0] Inst,
+    input ImmSrc,
     output [31:0] ImmExt
     );
     
-    assign ImmExt = Imm[31] == 1 ? {20'hFFFF, Imm[31:20]} : {20'h0000, Imm[31:20]};
+    assign ImmExt = (ImmSrc == 1) ? {{20{Inst[31]}}, Inst[31:25], Inst[11:7]} : {{20{Inst[31]}}, Inst[31:20]};
     
 endmodule

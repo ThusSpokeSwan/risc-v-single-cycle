@@ -11,9 +11,9 @@ module Data_Memory(
     always @(posedge clk)
     begin
         if (WE)
-            mem[A] <= WD;
+            mem[A[31:2]] <= WD;
     end
     
-    assign RD = (rst) ? 32'h00000000 : mem[A];
+    assign RD = (rst) ? 32'h00000000 : mem[A[31:2]];
     
 endmodule

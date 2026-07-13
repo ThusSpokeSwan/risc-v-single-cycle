@@ -11,11 +11,11 @@ module Register_File(
     
     always @(posedge clk)
     begin
-        if (WE)
+        if (WE && A3 != 5'd0)
             Register[A3] <= WD;
     end
     
-    assign RD1 = (rst) ? 32'h00000000 : Register[A1];
-    assign RD2 = (rst) ? 32'h00000000 : Register[A2];
+    assign RD1 = (rst) ? 32'h00000000 : ((A1 == 5'd0) ? 32'h00000000 : Register[A1]);
+    assign RD2 = (rst) ? 32'h00000000 : ((A2 == 5'd0) ? 32'h00000000 : Register[A2]);
     
 endmodule
